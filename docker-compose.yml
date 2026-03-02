@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  kinetic-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - FRONTEND_URL=http://localhost:3000
+    volumes:
+      - ./server/src:/app/src
+      - kinetic-db:/app/data
+    command: npm run dev
+
+  kinetic-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3001
+    volumes:
+      - ./app:/app/app
+      - ./components:/app/components
+    depends_on:
+      - kinetic-server
+
+volumes:
+  kinetic-db:
