@@ -1,0 +1,8 @@
+Welcome to the Kinetic Integrity Monitor.
+
+This package contains the complete deployment for the Kinetic Integrity Monitor:
+- README.md: Detailed instructions
+- docker-compose.yml / Dockerfile: For deployment
+- SDKs: Python, Node.js, and Go implementations.
+
+Please refer to README.md (Quick Start section) to get up and running in 30 minutes!
